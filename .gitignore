@@ -1,0 +1,10 @@
+# VScode
+.vscode/*
+.history/
+*.code-workspace
+
+# temp directories
+.cache/
+
+# Read me
+**/README.md

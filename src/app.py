@@ -25,7 +25,7 @@ def read_dump_files(files):
             return
         else:
             try:
-                with tarfile.open('./dumpfiles/' + list(file.keys())[0], mode='r|gz') as tar:
+                with tarfile.open('../cache/' + list(file.keys())[0], mode='r|gz') as tar:
                     tar_files = [tarinfo.name for tarinfo in tar]
                     logging.debug(f"reading tar/gzip found: {tar_files}")
             except tarfile.TarError as err:
@@ -41,7 +41,7 @@ def download_dump_files(files: list, token: str):
             start_time = perf_counter()
             r = get(url, headers=headers, stream=True, timeout=3)
             r.raise_for_status()
-            with open("./dumpfiles/" + filename, 'wb') as f:
+            with open("../cache/" + filename, 'wb') as f:
                 for chunk in r.iter_content(chunk_size=2097152):
                     f.write(chunk)
             end_time = perf_counter()
